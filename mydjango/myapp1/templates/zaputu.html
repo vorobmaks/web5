@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Home</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.bokeh.org/bokeh/release/bokeh-3.0.0.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.0.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8; /* Light blue background */
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: #007BFF; /* Blue color */
+            color: white;
+        }
+        #graph-library-container, #age-container {
+            text-align: center;
+            margin: 20px;
+        }
+        #dashboard-list {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        #dashboard-list li {
+            display: none;
+            margin: 5px 0;
+        }
+        .dashboard-link {
+            display: block;
+            padding: 10px 15px;
+            background-color: #0056b3; /* Darker blue */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .dashboard-link:hover {
+            background-color: #004085; /* Even darker blue */
+        }
+        #toggle-dashboard-list {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #toggle-dashboard-list:hover {
+            background-color: #0056b3;
+        }
+        #graph-container {
+            text-align: center;
+            margin: 20px;
+        }
+        #age-container label, #age-container input, #age-container button {
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        #age-container button {
+            background-color: #0056b3; /* Blue button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #age-container button:hover {
+            background-color: #004085;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Dashboards</h1>
+    <button class="btn-toggle" id="toggle-dashboard-list">Show Dashboards</button>
+    <div id="graph-library-container">
+        <label for="graph-library">Select Graph Library: </label>
+        <select id="graph-library">
+            <option value="bokeh">Bokeh</option>
+            <option value="plotly">Plotly</option>
+        </select>
+    </div>
+    <ul id="dashboard-list">
+        <li data-library="bokeh"><a href="#" class="dashboard-link" data-dashboard="bokeh1">Average Age per Team</a></li>
+        <li data-library="bokeh"><a href="#" class="dashboard-link" data-dashboard="bokeh2">Match Count by Month</a></li>
+        <li data-library="bokeh"><a href="#" class="dashboard-link" data-dashboard="bokeh3">Top Teams by Goals</a></li>
+        <li data-library="bokeh"><a href="#" class="dashboard-link" data-dashboard="bokeh4">Player Count per Team</a></li>
+        <li data-library="bokeh"><a href="#" class="dashboard-link" data-dashboard="bokeh5">The Number Of Matches Of Each Team</a></li>
+        <li data-library="bokeh"><a href="#" class="dashboard-link" data-dashboard="bokeh6">The Number Of Players Of A Given Age</a></li>
+        <li data-library="plotly"><a href="#" class="dashboard-link" data-dashboard="dashboard">Average Age per Team</a></li>
+        <li data-library="plotly"><a href="#" class="dashboard-link" data-dashboard="dash1">Match Count by Month</a></li>
+        <li data-library="plotly"><a href="#" class="dashboard-link" data-dashboard="dash2">Top Teams by Goals</a></li>
+        <li data-library="plotly"><a href="#" class="dashboard-link" data-dashboard="dash3">Player Count per Team</a></li>
+        <li data-library="plotly"><a href="#" class="dashboard-link" data-dashboard="dash4">The Number Of Matches Of Each Team</a></li>
+        <li data-library="plotly"><a href="#" class="dashboard-link" data-dashboard="dash5">The Number Of Players Of A Given Age</a></li>
+    </ul>
+    <div id="selected-dashboard"></div>
+    <div id="age-container" style="display:none;">
+        <label for="age">Enter Player Age: </label>
+        <input type="number" id="age" name="age" value="" min="18" step="1">
+        <button id="update-age">Update</button>
+    </div>
+    <div id="graph-container"></div>
+<script>
+    $('#toggle-dashboard-list').click(function() {
+        $('#dashboard-list').toggle();
+    });
+
+    $('#graph-library').change(function() {
+        var selectedLibrary = $(this).val();
+        if (selectedLibrary === 'bokeh') {
+            $('#dashboard-list li[data-library="bokeh"]').show();
+            $('#dashboard-list li[data-library="plotly"]').hide();
+        } else {
+            $('#dashboard-list li[data-library="bokeh"]').hide();
+            $('#dashboard-list li[data-library="plotly"]').show();
+        }
+        $('#selected-dashboard').text('');
+        $('#graph-container').empty();
+    });
+
+    $('.dashboard-link').click(function(event) {
+        event.preventDefault();
+        var dashboard = $(this).data('dashboard');
+        var dashboardName = $(this).text();
+        $('#selected-dashboard').text('Selected Dashboard: ' + dashboardName);
+
+        if (dashboard === 'bokeh6' || dashboard === 'dash5') {
+            $('#age-container').show();
+        } else {
+            $('#age-container').hide();
+        }
+
+        var graphLibrary = $('#graph-library').val();
+
+        $.ajax({
+            url: "{% url 'filter_data' %}",
+            data: { 'dashboard': dashboard, 'graph_library': graphLibrary },
+            success: function(response) {
+                $('#graph-container').empty();
+
+                if (graphLibrary === 'bokeh') {
+                    $('#graph-container').append(response.div);
+                    $('head').append(response.script);
+                } else {
+                    $('#graph-container').html(response.graph_html);
+                }
+            }
+        });
+    });
+
+    $('#update-age').click(function() {
+        var age = $('#age').val();
+        var graphLibrary = $('#graph-library').val();
+        var dashboard = $('#selected-dashboard').text().includes('Selected Dashboard: The Number Of Players Of A Given Age') ?
+                        ($('#graph-library').val() === 'bokeh' ? 'bokeh6' : 'dash5') : '';
+
+        if (dashboard) {
+            $.ajax({
+                url: "{% url 'filter_data' %}",
+                data: { 'dashboard': dashboard, 'age': age, 'graph_library': graphLibrary },
+                success: function(response) {
+                    $('#graph-container').empty();
+
+                    if (graphLibrary === 'bokeh') {
+                        $('#graph-container').append(response.div);
+                        $('head').append(response.script);
+                    } else {
+                        $('#graph-container').html(response.graph_html);
+                    }
+                }
+            });
+        }
+    });
+
+    $(document).ready(function() {
+        var initialLibrary = $('#graph-library').val();
+        if (initialLibrary === 'bokeh') {
+            $('#dashboard-list li[data-library="bokeh"]').show();
+            $('#dashboard-list li[data-library="plotly"]').hide();
+        } else {
+            $('#dashboard-list li[data-library="bokeh"]').hide();
+            $('#dashboard-list li[data-library="plotly"]').show();
+        }
+    });
+</script>
+</body>
+</html>

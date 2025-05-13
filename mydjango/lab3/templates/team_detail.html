@@ -1,0 +1,28 @@
+// team_detail.html
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ team.name }} Details</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <header>
+        <h1>{{ team.name }}</h1>
+    </header>
+    <div class="container">
+        <div class="team-info">
+            <p><strong>Team:</strong> {{ team.team_name }}</p>
+            <p><strong>City:</strong> {{ team.city }}</p>
+            <p><strong>Stadium:</strong> {{ team.stadium }}</p>
+        </div>
+        <div class="actions">
+            <a href="{% url 'team-edit' team.id %}" class="action-btn">Edit Team</a>
+            <a href="{% url 'team-list' %}" class="action-btn back-btn">Back to Team List</a>
+        </div>
+    </div>
+</body>
+</html>

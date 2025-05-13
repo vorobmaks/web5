@@ -1,0 +1,26 @@
+// team_list.html
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team List</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Team List</h1>
+    </header>
+    <div class="container">
+        <a href="{% url 'team-create' %}" class="add-btn">Add New Team</a>
+        <ul>
+            {% for team in teams %}
+                <li><a href="{% url 'team-detail' team.id %}">{{ team.team_name }}</a></li>
+            {% empty %}
+                <li class="no-teams">No teams available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

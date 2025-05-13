@@ -1,0 +1,44 @@
+// team_form.html
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if team %}Edit{% else %}Add{% endif %} Team</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <header>
+        <h1>{% if team %}Edit{% else %}Add{% endif %} Team</h1>
+    </header>
+    <div class="container">
+        <form method="post" action="{% if team %}{% url 'team-edit' team.id %}{% else %}{% url 'team-create' %}{% endif %}">
+            {% csrf_token %}
+
+            <label for="name">Team Name:</label>
+            <input type="text" id="name" name="name" value="{% if team %}{{ team.team_name }}{% endif %}" required>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" value="{% if team %}{{ team.city }}{% endif %}" required>
+
+            <label for="stadium">Stadium:</label>
+            <input type="text" id="stadium" name="stadium" value="{% if team %}{{ team.stadium }}{% endif %}" required>
+
+            <button type="submit">{% if team %}Save Changes{% else %}Add Team{% endif %}</button>
+        </form>
+
+        {% if team %}
+        <form method="post" action="{% url 'team-delete' team.id %}" style="margin-top: 15px;">
+            {% csrf_token %}
+            <button type="submit" class="delete-btn">Delete Team</button>
+        </form>
+        {% endif %}
+
+        <div class="back-btn">
+            <a href="{% url 'team-list' %}">Back to Team List</a>
+        </div>
+    </div>
+</body>
+</html>

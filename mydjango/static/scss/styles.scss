@@ -1,0 +1,125 @@
+// static/scss/styles.scss
+@use "variables" as *;
+@use "mixins" as *;
+@use "team_form";
+@use "team_detail";
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: $gray-bg;
+  color: $text-color;
+}
+
+header {
+  background-color: $black;
+  color: $white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  background: $white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.add-btn {
+  @include button-style($add-btn-bg, $btn-hover);
+  display: block;
+  width: fit-content;
+  margin: 0 auto 20px auto;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+li {
+  padding: 10px;
+  margin-bottom: 10px;
+  background: $white;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+    background: $gray-bg;
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+    color: $black;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.no-teams {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+@media (max-width: 400px) {
+  body {
+    font-size: 14px;
+  }
+
+  header {
+    padding: 0.5rem;
+    font-size: 18px;
+  }
+
+  button, .action-btn, .add-btn {
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  }
+
+  li {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      background: $gray-bg;
+      transform: scale(1.02);
+      cursor: pointer;
+    }
+
+    a {
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $delete-btn;
+      }
+    }
+  }
+
+  input[type="text"] {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:focus {
+      border-color: $black;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
