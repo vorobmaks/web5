@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if team %}Edit{% else %}Add{% endif %} Team</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!-- Заголовок сторінки: Додавання або редагування команди -->
+    <header>
+        <h1>{% if team %}Edit{% else %}Add{% endif %} Team</h1>
+    </header>
+
+    <!-- Основний контейнер -->
+    <div class="container">
+        <!-- Форма додавання або редагування команди -->
+        <form method="post" action="{% if team %}{% url 'team-edit' team.id %}{% else %}{% url 'team-create' %}{% endif %}">
+            {% csrf_token %}
+
+            <!-- Поле для назви команди -->
+            <label for="name">Team Name:</label>
+            <input type="text" id="name" name="name" value="{% if team %}{{ team.team_name }}{% endif %}" required>
+
+            <!-- Поле для міста -->
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" value="{% if team %}{{ team.city }}{% endif %}" required>
+
+            <!-- Поле для стадіону -->
+            <label for="stadium">Stadium:</label>
+            <input type="text" id="stadium" name="stadium" value="{% if team %}{{ team.stadium }}{% endif %}" required>
+
+            <!-- Кнопка підтвердження -->
+            <button type="submit">{% if team %}Save Changes{% else %}Add Team{% endif %}</button>
+        </form>
+
+        <!-- Форма для видалення команди (лише при редагуванні) -->
+        {% if team %}
+        <form method="post" action="{% url 'team-delete' team.id %}" style="margin-top: 15px;">
+            {% csrf_token %}
+            <button type="submit" class="delete-btn">Delete Team</button>
+        </form>
+        {% endif %}
+
+        <!-- Кнопка повернення до списку команд -->
+        <div class="back-btn">
+            <a href="{% url 'team-list' %}">Back to Team List</a>
+        </div>
+    </div>
+</body>
+</html>
