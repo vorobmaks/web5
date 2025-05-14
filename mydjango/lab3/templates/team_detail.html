@@ -1,24 +1,28 @@
-// team_detail.html
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ team.name }} Details</title>
+    <title>{{ team.team_name }} Details</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-
 </head>
 <body>
+    <!-- Заголовок сторінки з назвою команди -->
     <header>
-        <h1>{{ team.name }}</h1>
+        <h1>{{ team.team_name }}</h1>
     </header>
+
+    <!-- Основний контейнер з інформацією про команду -->
     <div class="container">
+        <!-- Виведення даних про команду -->
         <div class="team-info">
             <p><strong>Team:</strong> {{ team.team_name }}</p>
             <p><strong>City:</strong> {{ team.city }}</p>
             <p><strong>Stadium:</strong> {{ team.stadium }}</p>
         </div>
+
+        <!-- Кнопки для редагування та повернення до списку -->
         <div class="actions">
             <a href="{% url 'team-edit' team.id %}" class="action-btn">Edit Team</a>
             <a href="{% url 'team-list' %}" class="action-btn back-btn">Back to Team List</a>

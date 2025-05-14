@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from lab3.views import team_detail, team_form, team_list, team_delete
+from lab3.views import team_detail, team_form, team_list, team_delete, spa_view
 from myapp1.Rest.BaseCrudSet import AvgAgePerTeamAPIView, PlayerCountPerTeamAPIView, TopTeamsByGoalsAPIView, \
     HighScoreDifferenceMatchesAPIView, PlayersAbove30APIView, MatchCountByMonthAPIView
 from myapp1.Rest.CrudViews import MatchCrudView, TeamCrudView, PlayerCrudView
@@ -35,7 +35,7 @@ urlpatterns = [
     path('api/players/<int:pk>/', PlayerCrudView.as_view(), name='player-detail'),
     path('api/matches/', MatchCrudView.as_view(), name='match-list-create'),
     path('api/matches/<int:pk>/', MatchCrudView.as_view(), name='match-detail'),
-    path('', team_list, name='team-list'),
+    path('api/team/', team_list, name='team-list'),
     path('create/', team_form, name='team-create'),
     path('team/<int:pk>/edit/', team_form, name='team-edit'),
     path('team/<int:pk>/', team_detail, name='team-detail'),
@@ -46,7 +46,7 @@ urlpatterns = [
     path('api/match/high-score-difference/', HighScoreDifferenceMatchesAPIView.as_view(), name='high_score_difference_matches'),
     path('api/player/above-30/', PlayersAbove30APIView.as_view(), name='players_above_30'),
     path('api/match/monthly-count/', MatchCountByMonthAPIView.as_view(), name='match_count_by_month'),
-    path('dashboard/', dashboard_view, name='dashboard'),
+    path('', spa_view, name='dashboard'),
     path('dash1/', dash1, name='dash1'),
     path('dash2/', dash2, name='dash2'),
     path('dash3/', dash3, name='dash3'),

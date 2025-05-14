@@ -1,80 +1,49 @@
-// team_form.scss
 @use "variables" as *;
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: $gray-bg;
-  margin: 0;
-  padding: 0;
-}
-
-header {
-  background-color: $black;
-  color: $white;
-  padding: 1rem;
-  text-align: center;
-}
-
-.container {
-  max-width: 600px;
-  margin: 20px auto;
-  background: $white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
+@use "mixins" as m;
 
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   font-size: 14px;
+  color: $text-color;
+  font-weight: 500;
 }
 
 input[type="text"] {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid $border-color;
+  border-radius: 6px;
   font-size: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:focus {
+    border-color: $yellow;
+    box-shadow: 0 0 8px rgba($yellow, 0.3);
+  }
 }
 
 button {
-  display: block;
+  @include m.button-style($yellow, $yellow-hover);
   width: 100%;
-  padding: 10px;
-  background-color: $black;
-  color: $white;
-  border: none;
-  border-radius: 4px;
+  padding: 12px;
   font-size: 16px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: $btn-hover;
-  }
-
-  &.delete-btn {
-    background-color: $delete-btn;
-
-    &:hover {
-      background-color: $delete-hover;
-    }
-  }
+  color: $black;
 }
 
 .back-btn {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 25px;
 
   a {
     font-size: 14px;
     text-decoration: none;
     color: $black;
+    font-weight: 500;
+
+    &:hover {
+      color: $yellow;
+    }
   }
 }

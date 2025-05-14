@@ -1,9 +1,11 @@
-// variables.scss
-$black: #000;
-$white: #fff;
-$gray-bg: #f4f4f4;
-$text-color: #333;
-$btn-hover: #333;
-$delete-btn: #dc3545;
-$delete-hover: #c82333;
-$add-btn-bg: $black;
+$black: #000000; // Основний чорний
+$white: #FFFFFF; // Основний білий
+$yellow: #FFC107; // Яскравий жовтий для акцентів
+$yellow-hover: #FFA000; // Темніший жовтий для ховера
+$gray-bg: #F5F5F5; // Світло-сірий фон для контрасту
+$text-color: #212121; // Темно-сірий для тексту (краще читається, ніж чистий чорний)
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1); // М’яка тінь
+$shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.2); // Сильніша тінь
+$border-color: #E0E0E0; // Світло-сірий для меж
+$delete-btn: #D32F2F; // Червоний для кнопки видалення
+$delete-hover: #B71C1C; // Темніший червоний для ховера

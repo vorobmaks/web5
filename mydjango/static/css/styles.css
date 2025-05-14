@@ -1,104 +1,63 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-
-header {
-  background-color: #000;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
-}
-
-.container {
-  max-width: 600px;
-  margin: 20px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   font-size: 14px;
+  color: #212121;
+  font-weight: 500;
 }
 
 input[type=text] {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
   font-size: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+input[type=text]:focus {
+  border-color: #FFC107;
+  box-shadow: 0 0 8px rgba(255, 193, 7, 0.3);
 }
 
 button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #000;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
+  background-color: #FFC107;
+  color: #FFFFFF;
+  padding: 12px 24px;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 8px;
   font-size: 16px;
+  font-weight: 500;
+  text-align: center;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  color: #000000;
 }
 button:hover {
-  background-color: #333;
+  background-color: #FFA000;
+  border-color: #FFC107;
+  transform: translateY(-2px);
 }
-button.delete-btn {
-  background-color: #dc3545;
-}
-button.delete-btn:hover {
-  background-color: #c82333;
+button:active {
+  transform: translateY(0);
 }
 
 .back-btn {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 .back-btn a {
   font-size: 14px;
   text-decoration: none;
-  color: #000;
+  color: #000000;
+  font-weight: 500;
 }
-
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
-}
-
-header {
-  background-color: #000;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
-}
-
-.container {
-  max-width: 600px;
-  margin: 20px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
+.back-btn a:hover {
+  color: #FFC107;
 }
 
 .team-info {
@@ -106,152 +65,212 @@ h1 {
 }
 .team-info p {
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  color: #212121;
 }
 
 .actions {
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
 }
 .actions .action-btn {
-  padding: 10px 20px;
-  margin: 10px;
-  background-color: #000;
-  color: #fff;
+  background-color: #000000;
+  color: #FFFFFF;
+  padding: 12px 24px;
   text-decoration: none;
-  border-radius: 5px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+  width: 45%;
   font-size: 16px;
 }
 .actions .action-btn:hover {
-  background-color: #333;
+  background-color: #FFC107;
+  border-color: #FFC107;
+  transform: translateY(-2px);
 }
-.actions .action-btn.delete-btn {
-  background-color: #dc3545;
+.actions .action-btn:active {
+  transform: translateY(0);
 }
-.actions .action-btn.delete-btn:hover {
-  background-color: #c82333;
+.actions .delete-btn {
+  background-color: #D32F2F;
+  color: #FFFFFF;
+  padding: 12px 24px;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+  width: 45%;
+  font-size: 16px;
 }
-.actions .action-btn.back-btn {
-  background-color: #28a745;
+.actions .delete-btn:hover {
+  background-color: #B71C1C;
+  border-color: #FFC107;
+  transform: translateY(-2px);
 }
-.actions .action-btn.back-btn:hover {
-  background-color: #218838;
+.actions .delete-btn:active {
+  transform: translateY(0);
+}
+.actions .back-btn {
+  background-color: #FFC107;
+  color: #FFFFFF;
+  padding: 12px 24px;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+  width: 45%;
+  font-size: 16px;
+  color: #000000;
+}
+.actions .back-btn:hover {
+  background-color: #FFA000;
+  border-color: #FFC107;
+  transform: translateY(-2px);
+}
+.actions .back-btn:active {
+  transform: translateY(0);
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: #F5F5F5;
+  color: #212121;
+  line-height: 1.6;
 }
 
 header {
-  background-color: #000;
-  color: #fff;
-  padding: 1rem;
+  background-color: #000000;
+  color: #FFFFFF;
+  padding: 1.5rem;
   text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-bottom: 3px solid #FFC107;
 }
 
 .container {
-  max-width: 600px;
-  margin: 20px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  margin: 40px auto;
+  background: #FFFFFF;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #E0E0E0;
+  color: #000000;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: inherit;
 }
-
-.add-btn {
-  background-color: #000;
-  color: #fff;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 16px;
-  text-align: center;
+h1:after {
+  content: "";
   display: block;
-  width: fit-content;
-  margin: 0 auto 20px auto;
-  font-size: 18px;
-  cursor: pointer;
-}
-.add-btn:hover {
-  background-color: #333;
+  width: 60px;
+  height: 4px;
+  background: #FFC107;
+  margin: 8px auto;
 }
 
 ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  max-height: 300px;
+  max-height: 350px;
   overflow-y: auto;
 }
 
 li {
-  padding: 10px;
-  margin-bottom: 10px;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 12px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 li:hover {
-  background: #f4f4f4;
-  cursor: pointer;
+  background-color: #F5F5F5;
+  transform: translateY(-2px);
 }
 li a {
   text-decoration: none;
-  color: #000;
+  color: #000000;
+  font-weight: bold;
 }
 li a:hover {
-  text-decoration: underline;
+  color: #FFC107;
 }
 
 .no-teams {
   text-align: center;
-  color: #888;
+  color: #212121;
   font-style: italic;
+  font-size: 16px;
 }
 
-@media (max-width: 400px) {
-  body {
-    font-size: 14px;
+.add-btn {
+  background-color: #FFC107;
+  color: #FFFFFF;
+  padding: 12px 24px;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+  display: block;
+  width: auto;
+  margin: 0 auto 30px;
+  font-size: 18px;
+  color: #000000;
+}
+.add-btn:hover {
+  background-color: #FFA000;
+  border-color: #FFC107;
+  transform: translateY(-2px);
+}
+.add-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 20px;
   }
-  header {
-    padding: 0.5rem;
-    font-size: 18px;
+  h1 {
+    font-size: 1.8rem;
   }
-  button, .action-btn, .add-btn {
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-  }
-  li {
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  li:hover {
-    background: #f4f4f4;
-    transform: scale(1.02);
-    cursor: pointer;
-  }
-  li a {
-    transition: color 0.3s ease;
-  }
-  li a:hover {
-    color: #dc3545;
-  }
-  input[type=text] {
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  input[type=text]:focus {
-    border-color: #000;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  .add-btn {
+    font-size: 16px;
+    padding: 10px 20px;
   }
 }
 

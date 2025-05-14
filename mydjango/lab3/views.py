@@ -57,3 +57,6 @@ def team_delete(request, pk):
             return redirect('team-list')
 
     return HttpResponseForbidden("Forbidden: Invalid request method.")
+
+def spa_view(request):
+    return render(request, 'index.html')

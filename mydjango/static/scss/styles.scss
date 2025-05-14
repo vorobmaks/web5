@@ -1,125 +1,118 @@
-// static/scss/styles.scss
 @use "variables" as *;
-@use "mixins" as *;
+@use "mixins" as m;
 @use "team_form";
 @use "team_detail";
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   background-color: $gray-bg;
   color: $text-color;
+  line-height: 1.6;
 }
 
 header {
   background-color: $black;
   color: $white;
-  padding: 1rem;
+  padding: 1.5rem;
   text-align: center;
+  box-shadow: $shadow-lg;
+  border-bottom: 3px solid $yellow;
 }
 
 .container {
-  max-width: 600px;
-  margin: 20px auto;
+  max-width: 700px;
+  margin: 40px auto;
   background: $white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: $shadow-lg;
+  border: 1px solid $border-color;
+  color: $black;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
-}
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: inherit;
 
-.add-btn {
-  @include button-style($add-btn-bg, $btn-hover);
-  display: block;
-  width: fit-content;
-  margin: 0 auto 20px auto;
-  font-size: 18px;
-  cursor: pointer;
+  &:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: $yellow;
+    margin: 8px auto;
+  }
 }
 
 ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  max-height: 300px;
+  max-height: 350px;
   overflow-y: auto;
 }
 
 li {
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 15px;
+  margin-bottom: 12px;
   background: $white;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: $shadow-sm;
   font-size: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 
   &:hover {
-    background: $gray-bg;
-    cursor: pointer;
+    background-color: $gray-bg;
+    transform: translateY(-2px);
   }
 
   a {
     text-decoration: none;
     color: $black;
+    font-weight: bold;
 
     &:hover {
-      text-decoration: underline;
+      color: $yellow;
     }
   }
 }
 
 .no-teams {
   text-align: center;
-  color: #888;
+  color: $text-color;
   font-style: italic;
+  font-size: 16px;
 }
 
-@media (max-width: 400px) {
-  body {
-    font-size: 14px;
+.add-btn {
+  @include m.button-style($yellow, $yellow-hover);
+  display: block;
+  width: auto;
+  margin: 0 auto 30px;
+  font-size: 18px;
+  color: $black;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 20px;
   }
 
-  header {
-    padding: 0.5rem;
-    font-size: 18px;
+  h1 {
+    font-size: 1.8rem;
   }
 
-  button, .action-btn, .add-btn {
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-  }
-
-  li {
-    transition: background-color 0.3s ease, transform 0.2s ease;
-
-    &:hover {
-      background: $gray-bg;
-      transform: scale(1.02);
-      cursor: pointer;
-    }
-
-    a {
-      transition: color 0.3s ease;
-
-      &:hover {
-        color: $delete-btn;
-      }
-    }
-  }
-
-  input[type="text"] {
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-
-    &:focus {
-      border-color: $black;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    }
+  .add-btn {
+    font-size: 16px;
+    padding: 10px 20px;
   }
 }
