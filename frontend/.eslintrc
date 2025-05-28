@@ -1,0 +1,31 @@
+{
+  "extends": ["airbnb", "react-app", "plugin:prettier/recommended"],
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".jsx"] }],
+    "indent": ["error", 4],
+    "react/react-in-jsx-scope": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+        "newlines-between": "always"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.js",
+          "**/*.test.jsx",
+          "**/setupTests.js",
+          "**/setupTests.jsx"
+        ]
+      }
+    ]
+  },
+  "env": {
+    "jest": true,
+    "browser": true,
+    "es2021": true
+  }
+}
